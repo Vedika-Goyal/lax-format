@@ -7,7 +7,7 @@ import './App.css';
 // ---------------------------------------------------------
 // 🔴 YOUR KEY
 // ---------------------------------------------------------
-const RAW_API_KEY = "AIzaSyCCuiv3TMRJ_c__2ExwUJaGJYxWuGB858s"; 
+const RAW_API_KEY = "AIzaSyBP_agJ-g89cKpWTwxMvUlaPkmoi2wB-zs"; 
 const API_KEY = RAW_API_KEY.trim();
 
 function App() {

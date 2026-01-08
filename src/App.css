@@ -1,0 +1,195 @@
+/* --- FONTS & RESET --- */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap');
+
+:root {
+  /* Brand Colors */
+  --primary-blue: #2563EB;       /* Royal Blue */
+  --primary-dark: #1E40AF;       /* Darker Blue for hover */
+  --accent-gold: #F59E0B;        /* Legal Gold (Subtle) */
+  
+  /* Backgrounds */
+  --bg-app: #F1F5F9;             /* Very Light Blue-Grey */
+  --bg-surface: #FFFFFF;         /* Pure White */
+  --bg-sidebar: #FFFFFF;         /* White Sidebar */
+  
+  /* Text */
+  --text-main: #0F172A;          /* Dark Navy text */
+  --text-muted: #64748B;         /* Slate Grey text */
+  
+  /* UI Elements */
+  --border: #E2E8F0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+  --radius: 12px;
+}
+
+body { 
+  margin: 0; 
+  overflow: hidden; 
+  font-family: 'Inter', sans-serif; 
+  background: var(--bg-app); 
+  color: var(--text-main); 
+}
+
+.app-container { display: flex; height: 100vh; width: 100vw; }
+
+/* --- SIDEBAR --- */
+.sidebar {
+  width: 280px;
+  background: var(--bg-sidebar);
+  border-right: 1px solid var(--border);
+  display: flex; flex-direction: column; padding: 2rem;
+  z-index: 10;
+}
+
+.logo { margin-bottom: 3rem; display: flex; align-items: center; gap: 12px; }
+.logo h1 { 
+  font-family: 'Playfair Display', serif; 
+  color: var(--text-main); 
+  font-size: 1.8rem; margin: 0; 
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+.scale-icon { font-size: 2rem; filter: drop-shadow(0 2px 4px rgba(37, 99, 235, 0.2)); }
+
+.nav-btn {
+  background: transparent; color: var(--text-muted); border: none; text-align: left;
+  padding: 14px 18px; font-size: 0.95rem; cursor: pointer; border-radius: 8px; margin-bottom: 6px;
+  font-weight: 500; transition: all 0.2s ease; display: flex; align-items: center; gap: 14px;
+}
+
+.nav-btn:hover { background: #F8FAFC; color: var(--primary-blue); }
+
+.nav-btn.active {
+  background: #EFF6FF; /* Light Blue bg */
+  color: var(--primary-blue);
+  font-weight: 600;
+}
+
+.footer-note { margin-top: auto; color: var(--text-muted); font-size: 0.75rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+
+/* --- MAIN CONTENT --- */
+.content-area {
+  flex: 1; padding: 3rem 4rem; overflow-y: auto; position: relative;
+  background: var(--bg-app);
+}
+
+.workspace { max-width: 900px; margin: 0 auto; animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+
+@keyframes slideUp { 
+  from { opacity: 0; transform: translateY(20px); } 
+  to { opacity: 1; transform: translateY(0); } 
+}
+
+header { margin-bottom: 2rem; text-align: left; }
+h2 { 
+  font-size: 2.2rem; margin: 0 0 12px 0; font-family: 'Playfair Display', serif; 
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+p.subtitle { 
+  color: var(--text-muted); font-size: 1.1rem; max-width: 600px; 
+  line-height: 1.6; font-weight: 300;
+}
+
+/* --- TOOL BOX (The Card) --- */
+.tool-box {
+  background: var(--bg-surface);
+  padding: 3rem; border-radius: 16px; 
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lg);
+  position: relative; overflow: hidden;
+}
+
+/* Add a subtle top blue line to the card */
+.tool-box::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 6px;
+  background: linear-gradient(90deg, var(--primary-blue), #60A5FA);
+}
+
+textarea {
+  width: 100%; height: 180px; 
+  background: #F8FAFC; 
+  border: 1px solid var(--border);
+  color: var(--text-main); padding: 1.5rem; font-size: 1rem; border-radius: 12px;
+  box-sizing: border-box; resize: none; font-family: 'JetBrains Mono', monospace; line-height: 1.6;
+  transition: 0.2s;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+}
+
+textarea:focus { 
+  outline: none; background: #fff; border-color: var(--primary-blue); 
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1); 
+}
+
+/* --- BUTTONS --- */
+.action-btn {
+  margin-top: 2rem; 
+  background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-dark) 100%);
+  color: #fff;
+  padding: 16px 32px; border: none; border-radius: 10px; font-weight: 600;
+  cursor: pointer; font-size: 1rem; display: inline-flex; align-items: center; gap: 10px;
+  transition: all 0.2s; box-shadow: 0 4px 6px rgba(37, 99, 235, 0.25);
+}
+
+.action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3); }
+.action-btn:active { transform: translateY(0); }
+.action-btn:disabled { background: #CBD5E1; cursor: not-allowed; box-shadow: none; transform: none; }
+
+.download-btn { background: linear-gradient(135deg, #10B981 0%, #059669 100%); box-shadow: 0 4px 6px rgba(16, 185, 129, 0.25); width: 100%; justify-content: center; }
+
+/* --- RESULT PANEL --- */
+.result-panel {
+  margin-top: 2.5rem; padding: 2rem; 
+  background: #F1F5F9; border-radius: 12px; 
+  border-left: 5px solid var(--primary-blue);
+  animation: fadeIn 0.3s ease;
+}
+
+.result-label { 
+  display: block; color: var(--primary-dark); font-size: 0.75rem; 
+  text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 12px; font-weight: 700; 
+}
+.citation-text { 
+  font-family: 'Times New Roman', serif; font-size: 1.3rem; line-height: 1.5; color: #1E293B; 
+}
+.result-panel pre { 
+  color: #334155; white-space: pre-wrap; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem;
+}
+
+/* --- UPLOAD ZONE --- */
+.upload-zone label {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; height: 180px;
+  border: 2px dashed #CBD5E1; border-radius: 12px; cursor: pointer; color: var(--text-muted);
+  transition: 0.2s; background: #F8FAFC;
+}
+.upload-zone label:hover { 
+  border-color: var(--primary-blue); color: var(--primary-blue); background: #EFF6FF; 
+}
+
+.spec-list li { margin-bottom: 14px; font-size: 1rem; display: flex; align-items: center; gap: 12px; color: var(--text-main); }
+/* Add this at the bottom of your CSS file */
+
+.layout-selector {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: #F8FAFC;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+  appearance: none; /* Removes default ugly arrow */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%232563EB%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 0.8rem;
+}
+
+.layout-selector:focus {
+  outline: none;
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
